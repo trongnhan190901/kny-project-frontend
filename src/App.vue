@@ -1,12 +1,18 @@
 <template>
-  <Header />
+  <div id="app">
 
-  <router-view />
+    <Header/>
+
+    <router-view />
+    
+  </div>
+ 
 
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
+
 export default {
   name: 'App',
   components: {
@@ -24,6 +30,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+::-webkit-scrollbar{
+    width: 4px;
+}
+::-webkit-scrollbar-track{
+    background-color:transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #616161;
+    border-radius: 20px;
 }
 
 </style>
