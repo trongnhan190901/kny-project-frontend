@@ -1,40 +1,18 @@
 <template>
-  <template v-if="data && data.length">
-     <div class="w-[800px] relative -top-24 flex"
-          v-if="isValid">
-        <video id="player" playsinline controls data-poster="">
-          <source :src="data.link" type="video/mp4" />
-        </video>        
-      </div>   
-  </template>
-          
+  <div class="w-[800px] relative top-8 flex">
+    <video :src="video_src" id="player" playsinline controls>
+      {{ video_src }}
+      <source type="video/mp4" />
+    </video>
+  </div>
 </template>
 
 <script>
-import axios from "axios";
-import { ref } from "vue";
 export default {
-    name: "AnimePlayer",
-    setup(){      
-      const data = ref([]);
-      axios
-        .get("/api/animes?episodes")
-        .then(function (response) {
-          data.value = response.data;
-          console.log(data.value);
-        })
-        .catch(function (response) {
-          console.log(response);
-        });
-
-    console.log(data.value);
-      return { data };
-    },
-    methods: {
-        isValid: function (){
-          return this.data.link;
-      }
-    }
-}
-
+  props: { video_src: {
+    default: () => 'https://firebasestorage.googleapis.com/v0/b/kny-project.appspot.com/o/ep1.mp4?alt=media&token=89711709-f712-46e7-a0b9-c794984e6824',
+    type: String,
+  }},
+  name: "AnimePlayer",
+};
 </script>

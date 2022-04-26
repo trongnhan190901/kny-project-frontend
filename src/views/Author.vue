@@ -1,6 +1,13 @@
 <template>
   <div class="h-screen">
-    <div class="w-full h-full bg-gray-900">
+    <div
+      class="
+        w-full
+        h-full
+        bg-[url('../../public/media/img/bg-img.jpeg')]        
+      "
+    >
+    <img src="../../public/media/img/bg-deco.png" alt="" class="absolute right-0 bottom-0 opacity-50">
       <div
         class="
           absolute

@@ -1,6 +1,6 @@
 import createApiClient from "./api.service";
-class AnimeService {
-    constructor(baseUrl = "/api/animes") {
+class CommentService {
+    constructor(baseUrl = "/api/comments") {
         this.api = createApiClient(baseUrl);
     }
     async getAll() {
@@ -22,4 +22,4 @@ class AnimeService {
         return (await this.api.delete(`/${id}`)).data;
     }
 }
-export default new AnimeService();
+export default new CommentService();

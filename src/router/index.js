@@ -1,6 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from '@/views/Home.vue';
-import Manga from '@/views/Manga.vue'
 import Author from '@/views/Author.vue'
 import About from '@/views/About.vue'
 import Anime from '@/views/Anime.vue'
@@ -18,7 +17,7 @@ const redirectIfLoggedIn = (_to, _from) => {
 const routes= [
     {
 		path: "/login",
-		name: "login",
+		name: "Login",
 		component: UserLogin,
 		meta: {
 			publicPage: true,
@@ -27,7 +26,7 @@ const routes= [
 	},
 	{
 		path: "/register",
-		name: "register",
+		name: "Register",
 		component: () => import("@/views/UserRegister.vue"),
 		meta: {
 			publicPage: true,
@@ -45,15 +44,10 @@ const routes= [
         component:Home
     },
     {
-        path: '/anime', 
+        path: '/anime/:id', 
         name: 'Anime', 
         component:Anime,
-        
-    },
-    {
-        path: '/manga', 
-        name: 'Manga', 
-        component:Manga
+        props: true,
     },
     {
         path: '/author', 

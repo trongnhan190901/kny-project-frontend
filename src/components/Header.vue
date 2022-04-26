@@ -15,62 +15,21 @@
               alt="logo"
             />
           </router-link>
-          <div class="sm:flex sm:items-center text-2xl top-7">
-            <div
-              class="
-                dropdown
-                cursor-pointer
-                text-gray-400
-                font-semibold
-                hover:text-red-500
-                mr-4
-                hover:bg-none
-                inline-block
-                relative
-              "
-            >
-              Anime
-              <ul class="dropdown-menu w-28 absolute top-full -left-5 hidden">
-                <li>
-                  <router-link                
-                    :to="{ name: 'Anime', params: '625d29c1a6ffa45f1515d26f' }"
-                    class="
-                      block
-                      cursor-pointer
-                      text-gray-400
-                      font-semibold
-                      hover:text-red-500 hover:bg-none
-                      whitespace-no-wrap
-                    "
-                    >TV Series</router-link
-                  >
-                </li>
-                <li>
-                  <router-link
-                    :to="{}"
-                    class="
-                      block
-                      cursor-pointer
-                      text-gray-400
-                      font-semibold
-                      hover:text-red-500 hover:bg-none
-                      whitespace-no-wrap
-                    "
-                    >Movie</router-link
-                  >
-                </li>
-              </ul>
-            </div>
+
+          >
+          <div class="sm:flex sm:items-center text-2xl mt-10">
             <router-link
-              :to="{ name: 'Manga' }"
+              :to="{ name: 'Anime' , params: {id: '625d29c1a6ffa45f1515d26f' }}"
               class="
+                block
                 cursor-pointer
                 text-gray-400
                 font-semibold
-                hover:text-red-500
+                hover:text-red-500 hover:bg-none
+                whitespace-no-wrap
                 mr-4
               "
-              >Manga</router-link
+              >Anime</router-link
             >
             <router-link
               :to="{ name: 'Author' }"
@@ -90,9 +49,60 @@
                 text-gray-400
                 font-semibold
                 hover:text-red-500
+                mr-4
               "
               >Về chúng tôi</router-link
             >
+            <router-link
+              :to="{ name: 'Login' }"
+              v-if="!currentUser"
+              class="
+                cursor-pointer
+                font-semibold
+                hover:text-red-500
+                text-green-300
+                mr-4
+              "
+              >Đăng nhập</router-link
+            >
+            <router-link
+              :to="{ name: 'Register' }"
+              v-if="!currentUser"
+              class="
+                cursor-pointer
+                font-semibold
+                hover:text-red-500
+                text-green-300
+                mr-4
+              "
+              >Đăng ký</router-link
+            >
+            <div v-if="currentUser" class="navbar-nav ml-auto">
+              <router-link
+                :to="{ name: 'profile' }"
+                class="
+                  cursor-pointer
+                  font-semibold
+                  hover:text-red-500
+                  text-cyan-300
+                  mr-4
+                "
+                >{{ currentUser.username }}
+              </router-link>
+
+              <router-link
+                :to="{ name: 'Login' }"
+                class="
+                  cursor-pointer
+                  font-semibold
+                  hover:text-red-500
+                  text-green-300
+                  mr-4
+                "
+                @click.prevent="handleLogout"
+                >Đăng xuất
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -107,7 +117,26 @@
 </style>
 
 <script>
+import { mapState, mapActions } from "pinia";
+import { useAuthStore } from "@/stores/auth.store";
+
 export default {
   name: "HeaderCom",
+  computed: {
+    ...mapState(useAuthStore, {
+      currentUser: "user",
+    }),
+  },
+  methods: {
+    ...mapActions(useAuthStore, ["logout", "loadAuthState"]),
+
+    handleLogout() {
+      this.logout();
+      this.$router.push({ name: "login" });
+    },
+  },
+  created() {
+    this.loadAuthState();
+  },
 };
 </script>
