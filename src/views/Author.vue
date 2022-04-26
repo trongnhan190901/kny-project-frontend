@@ -36,7 +36,9 @@
           con cá sấu đeo kính khi thông báo những thông tin quan trọng về series
           hoặc về mình tới độc giả.
         </p>
-        <p class="text-white text-3xl my-3"><b>Chặng đường sáng tác</b></p>
+        <p class="text-white text-3xl my-3 block w-full">
+          <b>Chặng đường sáng tác</b>
+        </p>
         <p class="text-white my-2 text-justify">
           Ở tuổi 24, Gotouge đã đạt được giải thưởng dành cho Mangaka mới lần
           thứ 70 vào năm 2013 với tác phẩm đầu tay <b>Kagarigari</b> (過狩り狩り
