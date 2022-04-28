@@ -16,7 +16,7 @@
             />
           </router-link>
 
-          >
+          
           <div class="sm:flex sm:items-center text-2xl mt-10">
             <router-link
               :to="{ name: 'Anime' , params: {id: '625d29c1a6ffa45f1515d26f' }}"
